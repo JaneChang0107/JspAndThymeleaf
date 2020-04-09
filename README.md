@@ -1,1 +1,2 @@
 # JspAndThymeleaf
+SpringBoot同時可用jsp與thymeleaf並存

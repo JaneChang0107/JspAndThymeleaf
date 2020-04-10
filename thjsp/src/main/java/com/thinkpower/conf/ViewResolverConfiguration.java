@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;//此处及下面两行如果报错，就是”spring5“版本不对，你可以点击进去查看实际版本然后修改
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -29,11 +28,13 @@ public class ViewResolverConfiguration  extends WebMvcConfigurationSupport {
      //   public ViewResolver viewResolver() {
         public InternalResourceViewResolver viewResolver() { 
             InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+          //不在此加上jsp檔案所在資料目錄，而在controller回傳值才加上檔案所在目錄 
             resolver.setPrefix("/WEB-INF/");
             resolver.setSuffix(".jsp");
-            resolver.setViewNames("jsp/*");  //這裡是設置該view解析器所要的匹配哪些格式的view "*"代表匹配所有格式
-           
-            //優先等級，spring配置多個view解析器，數字越小，優先等級越高，越先匹配
+            // 這裡是設置該view解析器所要的匹配哪些格式的view "*"代表匹配所有格式
+            // setViewNames未設定時預設都會讀取jsp網頁，但有設定值只會解析設定目錄的網頁
+            resolver.setViewNames(new String[] {"jsp/*"});   
+            // 優先等級，spring配置多個view解析器，數字越小，優先等級越高，越先匹配
             resolver.setOrder(1);
             return resolver;
         }
@@ -66,8 +67,8 @@ public class ViewResolverConfiguration  extends WebMvcConfigurationSupport {
             viewResolver.setTemplateEngine(templateEngine());
             viewResolver.setCharacterEncoding("utf-8");
             viewResolver.setOrder(2);//設置該視圖解析器優先等級為1
-            //下面是設置該view解析器所要匹配哪格式的view "html/*", "vue/*","jsps/*","templates/*"代表匹配"html/*", "vue/*","jsps/*","templates/*"
-            viewResolver.setViewNames(new String[]{"html/*", "vue/*","templates/*","th/*"});
+            //下面是設置該view解析器所要匹配哪格式的view "html/*", "vue/*","jsps/*","templates/*"代表匹配"html/*", "vue/*","jsps/*","templates/*"            
+            viewResolver.setViewNames(new String[]{"html/*", "vue/*","templates/*","th/*","ths/*"});
             return viewResolver;
         }
         @Override
@@ -85,5 +86,6 @@ public class ViewResolverConfiguration  extends WebMvcConfigurationSupport {
 //            registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/" + "/static/");
 //        }
    
+        //redirect:index
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/th")
@@ -26,5 +27,12 @@ public class thController {
 		model.addAttribute("today", new Date());
 		model.addAttribute("welcome", "這是thymeleaf網頁");
 		return thymeleafViewNames+"/index";
+	}
+	@RequestMapping(value={"/logininfo"})
+	public ModelAndView toLoginInfo() {
+		ModelAndView model = new ModelAndView(thymeleafViewNames+"/logininfo");
+		model.addObject("today", new Date());
+		model.addObject("welcome", "這是thymeleaf-logininfo.html網頁");
+		return model;
 	}
 }

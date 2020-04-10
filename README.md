@@ -1,2 +1,2 @@
 # JspAndThymeleaf
-SpringBoot同時可用jsp與thymeleaf並存
+SpringBoot可同時使用jsp、thymeleaf做為view

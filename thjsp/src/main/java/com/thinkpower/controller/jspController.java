@@ -15,26 +15,26 @@ public class jspController {
 	@RequestMapping(value={"","/","/jsphome"})
 	public String toJspHome(Model model) {		
 		model.addAttribute("today", new Date());
-		model.addAttribute("welcome", "這是JSP網頁");
+		model.addAttribute("welcome", "這是JSP網頁 jsphome");
 		return jspViewNames+"/jsphome";
 	}	
 	@RequestMapping(value={"/i"})
 	public String toIndex(Model model) {	
 		
 		model.addAttribute("today", new Date());
-		model.addAttribute("welcome", "這是JSP網頁");
+		model.addAttribute("welcome", "這是JSP網頁 /i");
 		return "redirect:ths/thhome";
 	}	
 	@RequestMapping(value={"/thhome"})
 	public String toThHome(Model model) {			
 		model.addAttribute("today", new Date());
-		model.addAttribute("welcome", "這是JSP網頁");
+		model.addAttribute("welcome", "這是JSP網頁 /thhome");
 		return "jsp/thhome";
 	}
 	@RequestMapping(value={"/ths/thhome"})
 	public String toThsThHome(Model model) {			
 		model.addAttribute("today", new Date());
-		model.addAttribute("welcome", "這是JSP網頁");
+		model.addAttribute("welcome", "這是JSP網頁 /ths/thhome");
 		return "jsp/ths/thhome";
 	}	
 }
